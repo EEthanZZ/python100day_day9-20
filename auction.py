@@ -1,5 +1,4 @@
 
-from unicodedata import name
 from replit import clear
 
 
@@ -12,7 +11,6 @@ def auction():
     name = input("name:   ")
     bid = input("bid:   ")
     customers.append({name: bid})
-    print(customers[-1])
 
 
 auction()
@@ -21,6 +19,7 @@ while game_on:
 
     game_again = input("any more bid?")
     if game_again == 'y':
+        clear()
         auction()
     else:
         last_bid = customers[-1]
