@@ -4,7 +4,7 @@ timmy = Turtle()
 timmy.shape("circle")
 
 
-for i in range(0,20):
+for i in range(0,15):
     timmy.forward(10)
     timmy.penup()
     timmy.forward(10)
