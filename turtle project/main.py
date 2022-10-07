@@ -3,9 +3,9 @@ from turtle import Turtle, Screen
 from random import choice, randint
 timmy = Turtle()
 timmy.shape("circle")
-timmy.pensize(5)
 angle = [90, 270]
 turtle.colormode(255)
+timmy.speed("fastest")
 
 
 def random_color():
@@ -16,13 +16,13 @@ def random_color():
     return random_color
 
 
-for i in range(100):
-    timmy.forward(10)
-    timmy.color((random_color()))
-    timmy.right(choice(angle))
-    timmy.forward(10)
-    timmy.speed(100)
+def draw_circles(size_of_gap):
+    for i in range(int(360/size_of_gap)):
+        timmy.color(random_color())
+        timmy.circle(100)
+        timmy.left(size_of_gap)
 
 
+draw_circles(11)
 screen = Screen()
 screen.exitonclick()
