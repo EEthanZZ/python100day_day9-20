@@ -1,14 +1,22 @@
 from turtle import Turtle, Screen
-
+from random import choice
 timmy = Turtle()
 timmy.shape("circle")
 
+color = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
 
-for i in range(0,15):
-    timmy.forward(10)
-    timmy.penup()
-    timmy.forward(10)
-    timmy.pendown()
+
+def draw(x):
+    angle = 360 / x
+    for i in range(x):
+        timmy.forward(50)
+        timmy.right(angle)
+
+
+for i in range(3, 10):
+    draw(i)
+    timmy.color(choice(color))
+
 
 screen = Screen()
 screen.exitonclick()
