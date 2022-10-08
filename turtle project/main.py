@@ -1,28 +1,34 @@
 import turtle
 from turtle import Turtle, Screen
 from random import choice, randint
+import colorgram
+
+
+colors = colorgram.extract("dot_paint.jpeg", 30)
+color_list = []
+for i in colors:
+    r = i.rgb.r
+    g = i.rgb.g
+    b = i.rgb.b
+    new_color = (r, g, b)
+    color_list.append(new_color)
+
+
 timmy = Turtle()
 timmy.shape("circle")
 angle = [90, 270]
 turtle.colormode(255)
 timmy.speed("fastest")
+timmy.penup()
+timmy.goto(x=-300, y=-300)
+
+for i in range(101):
+    timmy.dot(20, choice(color_list))
+    timmy.forward(50)
+
+    if i % 10 == 0:
+        timmy.goto(x=-300, y=i*5-300)
 
 
-def random_color():
-    r = randint(0, 255)
-    g = randint(0, 255)
-    b = randint(0, 255)
-    random_color = (r, g, b)
-    return random_color
-
-
-def draw_circles(size_of_gap):
-    for i in range(int(360/size_of_gap)):
-        timmy.color(random_color())
-        timmy.circle(100)
-        timmy.left(size_of_gap)
-
-
-draw_circles(11)
 screen = Screen()
 screen.exitonclick()
