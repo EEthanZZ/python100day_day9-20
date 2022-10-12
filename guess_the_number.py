@@ -19,7 +19,7 @@ def check_answer(numberToGuess, guessedNumber, turn):
         print(f"too low")
         return turn - 1
     else:
-        print(f"you got it. the number is {number_to_guess}")
+        print(f"you got it. the number is {numberToGuess}")
 
 def game():
     attempts = difficulty()
