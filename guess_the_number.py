@@ -11,33 +11,28 @@ def difficulty():
         return EASY_LEVEL
 
 
-def too_high():
-    print("too high")
-    print(f'you have {attempts -1 - i} attempts remaining')
-
-
-def too_low():
-    print("too low")
-    print(f'you have {attempts -1 - i} attempts remaining')
-
-
-def correct_guess():
-    print("you made it")
-    pass
-
-
-attempts = difficulty()
-number_to_guess = choice(range(0, 101))
-print(f"you have {attempts} attempts to guess the number")
-print(number_to_guess)
-print(type(attempts))
-
-for i in range(1, attempts + 1):
-    guessed_number = int(input("guess:"))
-    if guessed_number > number_to_guess:
-        too_high()
-    elif guessed_number < number_to_guess:
-        too_low()
+def check_answer(numberToGuess, guessedNumber, turn):
+    if guessedNumber > numberToGuess:
+        print(f"too high")
+        return turn - 1
+    elif guessedNumber < numberToGuess:
+        print(f"too low")
+        return turn - 1
     else:
-        correct_guess()
-        break
+        print(f"you got it. the number is {number_to_guess}")
+
+def game():
+    attempts = difficulty()
+    number_to_guess = choice(range(0, 101))
+    print(number_to_guess)
+    guessed_number = 0
+    while number_to_guess != guessed_number:
+        guessed_number = int(input("guess a number: "))
+        attempts = check_answer(number_to_guess, guessed_number, attempts)
+        print(f"you have {attempts} attempts to guess the number")
+        if attempts == 0:
+            print("your lose")
+            return
+
+
+game()
