@@ -2,6 +2,7 @@ from game_data import data
 from random import randint, choice
 from art import *
 score = 0
+compare_b = choice(data)
 
 
 def check_answer(a, b):
@@ -15,8 +16,12 @@ def check_answer(a, b):
 game_on = True
 while game_on:
 
-    compare_a = choice(data)
+    compare_a = compare_b
     compare_b = choice(data)
+
+    while compare_a == compare_b:
+        compare_b = choice(data)
+    print(f"your score is {score}")
     print(f"Compare A: {compare_a['name']}, a {compare_a['description']}, from {compare_a['country']}")
     print(vs)
     print(f"Compare B: {compare_b['name']}, a {compare_b['description']}, from {compare_b['country']}")
@@ -28,7 +33,6 @@ while game_on:
     answer = check_answer(a_followers, b_followers)
     if answer == x:
         score += 1
-        print(f"your score is {score}")
     else:
         game_on = False
 # check the answer:
