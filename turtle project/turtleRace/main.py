@@ -12,4 +12,5 @@ for i in range(0, 11):
     jim.goto(x=-350, y=-250 + i*50)
     jim.color(random.choice(color))
 
+
 screen.exitonclick()
