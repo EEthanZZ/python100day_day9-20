@@ -40,9 +40,12 @@ is_game_on = True
 while is_game_on:
     screen.update()
     time.sleep(0.1)
-    for i in body_blocks:
-        i.forward(20)
-
+    for i in range(len(body_blocks) - 1, 0, -1):
+        new_x = body_blocks[i-1].xcor()
+        new_y = body_blocks[i-1].ycor()
+        body_blocks[i].goto(new_x, new_y)
+    body_blocks[0].forward(20)
+    body_blocks[0].left(90)
 
 
 screen.exitonclick()
