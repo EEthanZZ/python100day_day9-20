@@ -7,6 +7,7 @@ START_POSITION = [(START_POSITION_RANGE, START_POSITION_RANGE),
                   (START_POSITION_RANGE-40, START_POSITION_RANGE)]
 START_DIRECTION = choice([90, 270])
 
+
 class Snake:
     def __init__(self):
         self.body_blocks = []
@@ -25,5 +26,17 @@ class Snake:
             new_x = self.body_blocks[i - 1].xcor()
             new_y = self.body_blocks[i - 1].ycor()
             self.body_blocks[i].goto(new_x, new_y)
-        self.body_blocks[0].left(START_DIRECTION)
+        # self.body_blocks[0].setheading(START_DIRECTION)
         self.body_blocks[0].forward(20)
+
+    def snake_up(self):
+        self.body_blocks[0].setheading(90)
+
+    def snake_down(self):
+        self.body_blocks[0].setheading(270)
+
+    def snake_left(self):
+        self.body_blocks[0].setheading(180)
+
+    def snake_right(self):
+        self.body_blocks[0].setheading(0)

@@ -28,8 +28,14 @@ screen.bgcolor("black")
 screen.title("Welcome to the snake game")
 screen.setup(width=600, height=600)
 screen.tracer(0)
-
+screen.listen()
 snake = Snake()
+
+screen.onkey(snake.snake_up, "w")
+screen.onkey(snake.snake_down, "s")
+screen.onkey(snake.snake_left, "a")
+screen.onkey(snake.snake_right, "d")
+
 
 
 is_game_on = True
