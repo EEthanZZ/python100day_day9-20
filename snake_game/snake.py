@@ -1,4 +1,9 @@
 from turtle import Turtle
+from random import randint
+START_POSITION_RANGE = randint(-240, 240)
+START_POSITION = [(START_POSITION_RANGE, START_POSITION_RANGE),
+                  (START_POSITION_RANGE-20, START_POSITION_RANGE),
+                  (START_POSITION_RANGE-40, START_POSITION_RANGE)]
 
 
 class Snake:
@@ -7,11 +12,11 @@ class Snake:
         self.snake_initial()
 
     def snake_initial(self):
-        for i in range(3):
+        for i in START_POSITION:
             snake_body = Turtle('square')
             snake_body.color('white')
             snake_body.penup()
-            snake_body.goto(40 - i * 20, 0)
+            snake_body.goto(i)
             self.body_blocks.append(snake_body)
 
     def movement(self):
