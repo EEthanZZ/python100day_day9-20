@@ -13,7 +13,7 @@ task breakdown
 
 6. detect collision with wall
 
-7.detect collision with tail
+7.detect collision with tail: new snake_body[-1] = food's location
 """
 import time
 from turtle import Turtle, Screen
@@ -50,9 +50,17 @@ while is_game_on:
     if snake.head.distance(food) < 15:
         food.refresh()
         score.add_score()
+        snake.increase_body()
     # 6. detect collision with wall
+
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         is_game_on = False
         score.game_over()
+
+    # 7. detect collision with tail
+    for i in snake.body_blocks:
+        if snake.head.distance(i) < 10 and snake.body_blocks.index(i) > 1:
+            is_game_on = False
+            score.game_over()
 
 screen.exitonclick()
