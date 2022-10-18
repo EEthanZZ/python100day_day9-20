@@ -21,11 +21,7 @@ class Snake:
 
     def snake_initial(self):
         for i in START_POSITION:
-            snake_body = Turtle('square')
-            snake_body.color('white')
-            snake_body.penup()
-            snake_body.goto(i)
-            self.body_blocks.append(snake_body)
+            self.new_block(i)
             self.body_blocks[0].setheading(START_DIRECTION)
             # a bug here waiting to be fixed when doing the snake head distance to the wall
 
@@ -51,3 +47,13 @@ class Snake:
     def snake_right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    def new_block(self, i):
+        snake_body = Turtle('square')
+        snake_body.color('white')
+        snake_body.penup()
+        snake_body.goto(i)
+        self.body_blocks.append(snake_body)
+
+    def increase_body(self):
+        self.new_block(self.body_blocks[-1].position())
