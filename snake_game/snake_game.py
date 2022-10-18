@@ -37,7 +37,6 @@ screen.onkey(snake.snake_left, "a")
 screen.onkey(snake.snake_right, "d")
 
 
-
 is_game_on = True
 while is_game_on:
     screen.update()

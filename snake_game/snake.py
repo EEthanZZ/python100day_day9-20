@@ -3,8 +3,8 @@ from random import randint, choice
 
 START_POSITION_RANGE = randint(-240, 240)
 START_POSITION = [(START_POSITION_RANGE, START_POSITION_RANGE),
-                  (START_POSITION_RANGE-20, START_POSITION_RANGE),
-                  (START_POSITION_RANGE-40, START_POSITION_RANGE)]
+                  (START_POSITION_RANGE - 20, START_POSITION_RANGE),
+                  (START_POSITION_RANGE - 40, START_POSITION_RANGE)]
 START_DIRECTION = choice([90, 270])
 
 UP = 90
@@ -27,6 +27,7 @@ class Snake:
             snake_body.goto(i)
             self.body_blocks.append(snake_body)
             self.body_blocks[0].setheading(START_DIRECTION)
+            # a bug here waiting to be fixed when doing the snake head distance to the wall
 
     def movement(self):
         for i in range(len(self.body_blocks) - 1, 0, -1):
