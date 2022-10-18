@@ -18,6 +18,7 @@ task breakdown
 import time
 from turtle import Turtle, Screen
 from snake import Snake
+from food import Food
 # move the snake#
 
 
@@ -30,6 +31,8 @@ screen.setup(width=600, height=600)
 screen.tracer(0)
 screen.listen()
 snake = Snake()
+food = Food()
+
 
 screen.onkey(snake.snake_up, "w")
 screen.onkey(snake.snake_down, "s")
