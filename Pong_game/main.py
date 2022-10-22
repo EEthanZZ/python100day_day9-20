@@ -16,3 +16,15 @@ detect when paddle misses
 keep score
 """
 
+# create the screen
+from turtle import Turtle, Screen
+tim = Turtle()
+
+
+screen = Screen()
+screen.bgcolor("black")
+screen.title("Welcome to the Pong game")
+screen.setup(width=800, height=600)
+screen.exitonclick()
+
+
