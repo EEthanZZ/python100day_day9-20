@@ -21,6 +21,7 @@ PADDLE_LOCATION = [(350,)]
 
 from turtle import Turtle, Screen
 from paddle import Paddle
+from ball import Ball
 screen = Screen()
 screen.bgcolor("black")
 screen.title("Welcome to the Pong game")
@@ -35,8 +36,10 @@ screen.onkey(l_paddle.go_down, "s")
 screen.onkey(r_paddle.go_up, "Up")
 screen.onkey(r_paddle.go_down, "Down")
 # create the paddle
-
+ball = Ball()
 ga_is_on = True
 while ga_is_on:
     screen.update()
+    ball.ball_move()
+
 screen.exitonclick()
