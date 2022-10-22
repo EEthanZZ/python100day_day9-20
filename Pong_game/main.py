@@ -44,6 +44,9 @@ while ga_is_on:
     time.sleep(0.1)
     ball.ball_move()
     if ball.ycor() > 280 or ball.ycor() < -280:
-        ball.change_direction()
+        ball.change_direction_wall()
 
+    # detect collision with right paddle
+    if (ball.xcor() > 320 and ball.distance(r_paddle)):
+        ball.change_direction_paddle()
 screen.exitonclick()
