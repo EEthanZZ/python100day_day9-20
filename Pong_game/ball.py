@@ -20,3 +20,7 @@ class Ball(Turtle):
 
     def change_direction_paddle(self):
         self.x_move *= -1
+
+    def restart_game(self):
+        self.goto(0, 0)
+        self.change_direction_paddle()
