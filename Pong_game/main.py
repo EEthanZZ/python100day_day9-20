@@ -15,13 +15,14 @@ detect when paddle misses
 
 keep score
 """
-PADDLE_LOCATION = [(350,)]
+
 
 # create the screen
 
 from turtle import Turtle, Screen
 from paddle import Paddle
 from ball import Ball
+import time
 screen = Screen()
 screen.bgcolor("black")
 screen.title("Welcome to the Pong game")
@@ -40,6 +41,7 @@ ball = Ball()
 ga_is_on = True
 while ga_is_on:
     screen.update()
+    time.sleep(0.1)
     ball.ball_move()
 
 screen.exitonclick()
