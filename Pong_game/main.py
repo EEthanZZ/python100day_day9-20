@@ -23,6 +23,7 @@ from turtle import Turtle, Screen
 from paddle import Paddle
 from ball import Ball
 import time
+from score_board import ScoreBoard
 screen = Screen()
 screen.bgcolor("black")
 screen.title("Welcome to the Pong game")
@@ -38,6 +39,7 @@ screen.onkey(r_paddle.go_up, "Up")
 screen.onkey(r_paddle.go_down, "Down")
 # create the paddle
 ball = Ball()
+score = ScoreBoard()
 ga_is_on = True
 while ga_is_on:
     screen.update()
@@ -50,6 +52,11 @@ while ga_is_on:
     if ball.xcor() > 320 and ball.distance(r_paddle) < 50 or ball.xcor() < -320 and ball.distance(l_paddle) < 50:
         ball.change_direction_paddle()
 
-    if ball.xcor() > 380 or ball.xcor() < -380:
+    if ball.xcor() > 380:
         ball.restart_game()
+        score.l_point()
+
+    if ball.xcor() < -380:
+        ball.restart_game()
+        score.r_point()
 screen.exitonclick()
