@@ -26,9 +26,17 @@ screen.bgcolor("black")
 screen.title("Welcome to the Pong game")
 screen.setup(width=800, height=600)
 screen.tracer(0)
+screen.listen()
 
-
+l_paddle = Paddle((-350, 0))
+r_paddle = Paddle((350, 0))
+screen.onkey(l_paddle.go_up, "w")
+screen.onkey(l_paddle.go_down, "s")
+screen.onkey(r_paddle.go_up, "Up")
+screen.onkey(r_paddle.go_down, "Down")
 # create the paddle
 
-screen.update()
+ga_is_on = True
+while ga_is_on:
+    screen.update()
 screen.exitonclick()
