@@ -43,5 +43,7 @@ while ga_is_on:
     screen.update()
     time.sleep(0.1)
     ball.ball_move()
+    if ball.ycor() > 280 or ball.ycor() < -280:
+        ball.change_direction()
 
 screen.exitonclick()
