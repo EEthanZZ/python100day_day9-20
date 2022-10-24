@@ -24,4 +24,6 @@ while game_is_on:
         if player.distance(i) < 20:
             game_is_on = False
 
+    if player.next_game():
+        player.go_to_start()
 screen.exitonclick()
