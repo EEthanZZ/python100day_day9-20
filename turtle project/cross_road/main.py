@@ -26,4 +26,5 @@ while game_is_on:
 
     if player.next_game():
         player.go_to_start()
+        cars.next_level_speed_up()
 screen.exitonclick()
