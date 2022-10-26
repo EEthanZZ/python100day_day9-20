@@ -57,3 +57,8 @@ class Snake:
 
     def increase_body(self):
         self.new_block(self.body_blocks[-1].position())
+
+    def reset(self):
+        self.body_blocks.clear()
+        self.snake_initial()
+        self.head = self.body_blocks[0]
