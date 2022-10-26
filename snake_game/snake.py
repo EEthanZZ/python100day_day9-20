@@ -59,6 +59,9 @@ class Snake:
         self.new_block(self.body_blocks[-1].position())
 
     def reset(self):
+        for i in self.body_blocks:
+            i.goto(1000, 1000)
         self.body_blocks.clear()
         self.snake_initial()
         self.head = self.body_blocks[0]
+
