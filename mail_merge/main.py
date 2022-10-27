@@ -14,5 +14,7 @@ with open("./Input/Names/invited_names.txt") as name_file:
 with open("./Input/Letters/starting_letter.txt") as letter_file:
     letter = letter_file.read()
     for i in names:
-        new_letter = letter.replace(to_replace, i)
-        print(new_letter)
+        stripped_name = i.strip("\n")
+        new_letter = letter.replace(to_replace, i.strip("\n"))
+        with open (f"./Output/ReadyToSend/new_letter_for{stripped_name}.txt", mode="w") as letters:
+            letters_to_send = letters.write(new_letter)
