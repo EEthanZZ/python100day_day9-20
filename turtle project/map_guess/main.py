@@ -13,14 +13,14 @@ tim = turtle.Turtle()
 data = pandas.read_csv("50_states.csv")
 states_list = data["state"].to_list()
 print(states_list)
-data_dic = data.to_dict()
-print(data_dic)
+
 answer = screen.textinput(title="guess the state", prompt="what's the state name?").title()
 print(answer)
 
 if answer in states_list:
-    x_cord = data[answer]["x"]
-    y_cord = data[answer]["y"]
+    state_data = data[data["state"] == answer]
+    x_cord = state_data["x"]
+    y_cord = state_data["y"]
     tim.goto(x_cord, y_cord)
     tim.write("aaaa")
 
