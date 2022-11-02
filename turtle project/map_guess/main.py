@@ -19,9 +19,9 @@ print(answer)
 
 if answer in states_list:
     state_data = data[data["state"] == answer]
-    x_cord = state_data["x"]
-    y_cord = state_data["y"]
+    x_cord = int(state_data["x"])
+    y_cord = int(state_data["y"])
     tim.goto(x_cord, y_cord)
-    tim.write("aaaa")
+    tim.write(answer)
 
 screen.exitonclick()
