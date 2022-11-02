@@ -13,7 +13,7 @@ print(states_list)
 guessed_state = []
 
 while len(guessed_state) < 50:
-    answer = screen.textinput(title="guess the state", prompt="what's the state name?").title()
+    answer = screen.textinput(title=f"{len(guessed_state)}/50", prompt="what's the state name?").title()
     print(answer)
 
     if answer in states_list:
@@ -26,5 +26,13 @@ while len(guessed_state) < 50:
         tim.goto(x_cord, y_cord)
         tim.write(answer)
         guessed_state.append(answer)
+
+    if answer == 'Exit':
+        missing_state = []
+        for i in states_list:
+            if i not in guessed_state:
+                missing_state.append(i)
+
+        break
 
 screen.exitonclick()
