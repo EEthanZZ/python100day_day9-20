@@ -32,7 +32,8 @@ while len(guessed_state) < 50:
         for i in states_list:
             if i not in guessed_state:
                 missing_state.append(i)
-
+        not_guessed = pandas.DataFrame(missing_state)
+        not_guessed.to_csv("not_guessed.csv")
         break
 
 screen.exitonclick()
