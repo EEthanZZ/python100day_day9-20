@@ -26,13 +26,13 @@ def start_time():
 
     if reps % 2 == 1:
         count_down(work_sec)
-        timer_label.config(fg=PINK)
+        timer_label.config(fg=PINK, text="WORK")
     elif reps % 8 == 0:
         count_down(long_break_sec)
-        timer_label.config(fg=GREEN)
+        timer_label.config(fg=GREEN, text="Long Break")
     else:
         count_down(short_break_sec)
-        timer_label.config(fg=RED)
+        timer_label.config(fg=RED, text="Short Break")
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
@@ -50,6 +50,10 @@ def count_down(count):
         window.after(1000, count_down, count - 1)
     if count == 0:
         start_time()
+        mark = ''
+        for i in range(math.floor(reps/2)):
+            mark += "✔"
+        check_label.config(text=mark)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -70,7 +74,7 @@ reset_button.grid(column=2, row=2)
 timer_label = Label(text="Timer", font=(FONT_NAME, 50, "bold"), fg=GREEN)
 timer_label.config(bg=YELLOW)
 timer_label.grid(column=1, row=0)
-check_label = Label(text="✔︎", bg=YELLOW, fg=GREEN)
+check_label = Label(bg=YELLOW, fg=GREEN)
 check_label.grid(column=1, row=3)
 
 window.mainloop()
