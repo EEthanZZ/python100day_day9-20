@@ -1,13 +1,17 @@
 from tkinter import *
+from tkinter import messagebox
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def add():
-    with open("password.txt", mode="a") as f:
-        f.write(f'\n{web_input.get()} | {email_input.get()} | {password_input.get()}')
-    web_input.delete(0, END)
-    password_input.delete(0, END)
+    is_okay = messagebox.askokcancel(title=web_input.get(), message=f'email:{email_input.get()}\n'
+                                                       f'password:{password_input.get()}')
+    if is_okay:
+        with open("password.txt", mode="a") as f:
+            f.write(f'\n{web_input.get()} | {email_input.get()} | {password_input.get()}')
+        web_input.delete(0, END)
+        password_input.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
