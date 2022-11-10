@@ -3,6 +3,12 @@ from tkinter import *
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
+def add():
+    with open("password.txt", mode="a") as f:
+        f.write(f'\n{web_input.get()} | {email_input.get()} | {password_input.get()}')
+    web_input.delete(0, END)
+    password_input.delete(0, END)
+
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("password manager")
@@ -21,14 +27,16 @@ password_label.grid(column=0, row=3)
 
 web_input = Entry(width=35)
 web_input.grid(column=1, row=1, columnspan=2)
+web_input.focus()
 email_input = Entry(width=35)
+email_input.insert(0, "@gmail.com")
 email_input.grid(column=1, row=2, columnspan=2)
 password_input = Entry()
 password_input.grid(column=1, row=3)
 
 password_icon = Button(text="generate password")
 password_icon.grid(column=2, row=3)
-add_icon = Button(text="Add", width=35)
+add_icon = Button(text="Add", width=36, command=add)
 add_icon.grid(column=1, row=4, columnspan=2)
 
 
