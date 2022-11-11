@@ -1,13 +1,17 @@
 from tkinter import *
 from tkinter import messagebox
 
-
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
-#Password Generator Project
+# Password Generator Project
 import random
 
+
 def random_password():
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+    password_input.delete(0, END)
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+               'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
@@ -21,15 +25,16 @@ def random_password():
 
     password_list = password_numbers + password_symbols + password_letters
 
-
     random.shuffle(password_list)
 
     password = "".join(password_list)
-    return password_input.get(password)
+    password_input.insert(0, password)
+
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def add():
+
     if len(web_input.get()) < 1 or len(password_input.get()) < 1:
         messagebox.showerror(title="oops", message="do not leave any fileds in empty!")
         web_input.delete(0, END)
@@ -37,12 +42,12 @@ def add():
     else:
         is_okay = messagebox.askokcancel(title=web_input.get(), message=f'email:{email_input.get()}\n'
                                                                         f'password:{password_input.get()}')
+
         if is_okay:
             with open("password.txt", mode="a") as f:
                 f.write(f'\n{web_input.get()} | {email_input.get()} | {password_input.get()}')
             web_input.delete(0, END)
             password_input.delete(0, END)
-
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -71,7 +76,7 @@ password_input = Entry()
 password_input.grid(column=1, row=3)
 
 password_icon = Button(text="generate password", command=random_password)
-password_icon.grid(column=2, row=3,)
+password_icon.grid(column=2, row=3, )
 add_icon = Button(text="Add", width=36, command=add)
 add_icon.grid(column=1, row=4, columnspan=2)
 
