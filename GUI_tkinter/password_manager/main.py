@@ -53,8 +53,12 @@ def add():
         #                                                                 f'password:{password_input.get()}')
 
         # if is_okay:
+            with open("password.json", mode="r") as f:
+                # json.dump(new_data, f, indent=4)
+                data = json.load(f)
+                data.update(new_data)
             with open("password.json", mode="w") as f:
-                json.dump(new_data, f)
+                json.dump(data, f, indent=4)
             web_input.delete(0, END)
             password_input.delete(0, END)
 
