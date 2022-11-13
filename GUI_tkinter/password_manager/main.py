@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-
+import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 # Password Generator Project
 import random
@@ -33,19 +33,28 @@ def random_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
-def add():
+def search():
+    pass
 
+def add():
+    website = web_input.get()
+    email = email_input.get()
+    password = password_input.get()
+    new_data = {website:{
+        "email" : email,
+        "password": password,
+    }}
     if len(web_input.get()) < 1 or len(password_input.get()) < 1:
         messagebox.showerror(title="oops", message="do not leave any fileds in empty!")
         web_input.delete(0, END)
         password_input.delete(0, END)
     else:
-        is_okay = messagebox.askokcancel(title=web_input.get(), message=f'email:{email_input.get()}\n'
-                                                                        f'password:{password_input.get()}')
+        # is_okay = messagebox.askokcancel(title=web_input.get(), message=f'email:{email_input.get()}\n'
+        #                                                                 f'password:{password_input.get()}')
 
-        if is_okay:
-            with open("password.txt", mode="a") as f:
-                f.write(f'\n{web_input.get()} | {email_input.get()} | {password_input.get()}')
+        # if is_okay:
+            with open("password.json", mode="w") as f:
+                json.dump(new_data, f)
             web_input.delete(0, END)
             password_input.delete(0, END)
 
@@ -79,5 +88,7 @@ password_icon = Button(text="generate password", command=random_password)
 password_icon.grid(column=2, row=3, )
 add_icon = Button(text="Add", width=36, command=add)
 add_icon.grid(column=1, row=4, columnspan=2)
+search_icon = Button(text="Search")
+search_icon.grid(column=2, row=1)
 
 window.mainloop()
