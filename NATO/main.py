@@ -28,8 +28,11 @@ print(dic)
 
 # TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 name = input("name").upper()
-
-ll = [dic[i] for i in name]
-print(ll)
-for i in ll:
-    print(f'{i[0]} for {i}')
+try:
+    ll = [dic[i] for i in name]
+except KeyError:
+    print("letters only")
+else:
+    print(ll)
+    for i in ll:
+        print(f'{i[0]} for {i}')
