@@ -27,12 +27,16 @@ dic = {v.letter: v.code for (k, v) in df.iterrows()}
 print(dic)
 
 # TODO 2. Create a list of the phonetic code words from a word that the user inputs.
-name = input("name").upper()
-try:
-    ll = [dic[i] for i in name]
-except KeyError:
-    print("letters only")
-else:
-    print(ll)
-    for i in ll:
-        print(f'{i[0]} for {i}')
+def generate_name():
+    name = input("name").upper()
+    try:
+        ll = [dic[i] for i in name]
+    except KeyError:
+        print("letters only")
+        generate_name()
+    else:
+        print(ll)
+        for i in ll:
+            print(f'{i[0]} for {i}')
+
+generate_name()
