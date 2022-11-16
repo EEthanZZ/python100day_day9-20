@@ -34,7 +34,20 @@ def random_password():
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def search():
-    pass
+    website = web_input.get()
+    try:
+        with open("password.json", mode="r") as f:
+            data = json.load(f)
+        email = data[website]["email"]
+        password = data[website]["password"]
+        messagebox.showinfo(title=website, message=f'email: {email}\npassword:{password}')
+    except FileNotFoundError:
+        messagebox.showerror(message="data not found")
+    except KeyError:
+        messagebox.showerror(title="ERROR", message="no password found")
+
+
+
 
 def add():
     website = web_input.get()
@@ -60,7 +73,6 @@ def add():
         except FileNotFoundError:
             with open("password.json", mode="w") as f:
                 json.dump(new_data, f, indent=4)
-
         else:
             data.update(new_data)
             with open("password.json", mode="w") as f:
@@ -87,7 +99,7 @@ password_label = Label(text="password:")
 password_label.grid(column=0, row=3)
 
 web_input = Entry(width=35)
-web_input.grid(column=1, row=1, columnspan=2)
+web_input.grid(column=1, row=1)
 web_input.focus()
 email_input = Entry(width=35)
 email_input.insert(0, "@gmail.com")
@@ -99,7 +111,7 @@ password_icon = Button(text="generate password", command=random_password)
 password_icon.grid(column=2, row=3, )
 add_icon = Button(text="Add", width=36, command=add)
 add_icon.grid(column=1, row=4, columnspan=2)
-search_icon = Button(text="Search")
+search_icon = Button(text="Search", command=search)
 search_icon.grid(column=2, row=1)
 
 window.mainloop()
