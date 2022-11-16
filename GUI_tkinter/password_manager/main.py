@@ -40,11 +40,12 @@ def search():
             data = json.load(f)
         email = data[website]["email"]
         password = data[website]["password"]
-        messagebox.showinfo(title=website, message=f'email: {email}\npassword:{password}')
     except FileNotFoundError:
         messagebox.showerror(message="data not found")
     except KeyError:
-        messagebox.showerror(title="ERROR", message="no password found")
+        messagebox.showerror(title="ERROR", message=f"no password found for {website}")
+    else:
+        messagebox.showinfo(title=website, message=f'email: {email}\npassword:{password}')
 
 
 
