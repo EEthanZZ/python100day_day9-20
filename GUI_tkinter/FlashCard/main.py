@@ -8,15 +8,25 @@ BACKGROUND_COLOR = "#B1DDC6"
 
 data = pandas.read_csv("data/french_words.csv")
 a = data.to_dict(orient="records")
-print(a)
+b = {}
 def next_word():
+    global b
     b = random.choice(a)
     french_words = b["French"]
+    english_words = b["English"]
     canvas.itemconfig(title, text="French")
     canvas.itemconfig(word, text=french_words)
 
+
+def flip_card():
+    canvas.itemconfig(title, text="English")
+    canvas.itemconfig(word, text=b["English"])
+
 window = Tk()
 window.config(bg=BACKGROUND_COLOR, padx=50, pady=50)
+
+window.after(3000, func=flip_card)
+
 canvas = Canvas(height=525, width=800)
 photo = PhotoImage(file="images/card_front.png")
 button_right_img = PhotoImage(file="images/right.png")
@@ -32,7 +42,10 @@ button_wrong.grid(column=0, row=1)
 button_right = Button(image=button_right_img, highlightthickness=0, command=next_word)
 button_right.grid(column=1, row=1)
 
+back_photo = PhotoImage(file="images/card_back.png")
 
 next_word()
 
+
+canvas.itemconfig(photo, image=back_photo)
 window.mainloop()
