@@ -4,11 +4,16 @@ from tkinter import *
 import pandas
 from pandas import *
 BACKGROUND_COLOR = "#B1DDC6"
-
-
-data = pandas.read_csv("data/french_words.csv")
-a = data.to_dict(orient="records")
+u = "data/french_words.csv"
+a = {}
 b = {}
+try:
+    data = pandas.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    o_data = pandas.read_csv(u)
+    a = o_data.to_dict(orient="records")
+else:
+    a = data.to_dict(orient="records")
 def next_word():
     global b, flip_timer
     window.after_cancel(flip_timer)
@@ -27,7 +32,7 @@ def flip_card():
 def card_known():
     a.remove(b)
     data = pandas.DataFrame(a)
-    data.to_csv("data/words_to_learn.csv")
+    data.to_csv("data/words_to_learn.csv", index=False)
     next_word()
 
 
