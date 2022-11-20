@@ -1,7 +1,9 @@
 import datetime as dt
-
+import random
+import smtplib
 import pandas
-
+my_email = "zycc2727@gmail.com"
+password = "wcbujxxyjdbnmjdl"
 ##################### Normal Starting Project ######################
 
 # 1. Update the birthdays.csv with your friends & family's details. 
@@ -24,7 +26,7 @@ data = pandas.read_csv("../SMTP_email/birthdays.csv")
 #     (birthday_month, birthday_day): data_row
 # }
 birthdays_dict = {(v["month"], v["day"]): v for (k, v) in data.iterrows()}
-print(birthdays_dict)
+# print(birthdays_dict)
 #Dictionary comprehension template for pandas DataFrame looks like this:
 # new_dict = {new_key: new_value for (index, data_row) in data.iterrows()}
 #e.g. if the birthdays.csv looked like this:
@@ -37,6 +39,19 @@ print(birthdays_dict)
 
 #HINT 4: Then you could compare and see if today's month/day tuple matches one of the keys in birthday_dict like this:
 # if (today_month, today_day) in birthdays_dict:
+if today in birthdays_dict:
+    person = birthdays_dict[today]
+    path = f"../SMTP_email/letter_templates/letter_{random.randint(1,3)}.txt"
+    with open(path) as file:
+        content = file.read()
+        to_send = content.replace("[NAME]", person["name"])
+
+    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+        connection.starttls()
+        connection.login(user=my_email, password=password)
+        connection.sendmail(from_addr=my_email, to_addrs=person["email"],
+                            msg=f"Subject: HBD\n\n{to_send}")
+
 
 # 3. If there is a match, pick a random letter (letter_1.txt/letter_2.txt/letter_3.txt) from letter_templates and replace the [NAME] with the person's actual name from birthdays.csv
 # HINT 1: Think about the relative file path to open each letter. 
