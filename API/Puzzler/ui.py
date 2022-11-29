@@ -1,7 +1,10 @@
 from tkinter import *
 from quiz_brain import QuizBrain
+
 THEME_COLOR = "#375362"
 FONT = ("Arial", 20, "italic")
+
+
 class QuizUI:
     def __init__(self, quiz_brain: QuizBrain):
         self.quiz = quiz_brain
@@ -31,20 +34,25 @@ class QuizUI:
 
     def get_next_q(self):
         self.canvas.config(bg="white")
-        self.score_text.config(text=f"Score: {self.quiz.score}")
-        q_text = self.quiz.next_question()
-        self.canvas.itemconfig(self.q_next, text=q_text)
-
+        if self.quiz.still_has_questions():
+            self.score_text.config(text=f"Score: {self.quiz.score}")
+            q_text = self.quiz.next_question()
+            self.canvas.itemconfig(self.q_next, text=q_text)
+        else:
+            self.canvas.itemconfig(self.q_next, text="out of questions")
+            self.button_wrong.config(state="disabled")
+            self.button_right.config(state="disabled")
     def correct(self):
         is_right = self.quiz.check_answer("True")
         self.give_feedback(is_right)
+
     def wrong(self):
         is_right = self.quiz.check_answer("False")
         self.give_feedback(is_right)
+
     def give_feedback(self, is_right):
         if is_right:
             self.canvas.config(bg="green")
         else:
             self.canvas.config(bg="red")
         self.window.after(1000, self.get_next_q)
-
