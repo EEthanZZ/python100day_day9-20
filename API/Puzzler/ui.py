@@ -20,7 +20,7 @@ class QuizUI:
         self.button_wrong = Button(image=self.wrong_photo, highlightthickness=0, command=self.wrong)
         self.button_wrong.grid(column=1, row=2, padx=20, pady=20)
 
-        self.score_text = Label(text=f"Score:", bg=THEME_COLOR, font=FONT, fg="white")
+        self.score_text = Label(text=f"Score:", bg=THEME_COLOR, fg="white")
         self.score_text.grid(row=0, column=1, padx=20, pady=20)
 
         self.window.title("Quiz")
@@ -29,8 +29,9 @@ class QuizUI:
 
         self.window.mainloop()
 
-    def get_next_q(self)
+    def get_next_q(self):
         self.canvas.config(bg="white")
+        self.score_text.config(text=f"Score: {self.quiz.score}")
         q_text = self.quiz.next_question()
         self.canvas.itemconfig(self.q_next, text=q_text)
 
