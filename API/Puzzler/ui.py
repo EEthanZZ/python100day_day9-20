@@ -15,9 +15,9 @@ class QuizUI:
         self.right_photo = PhotoImage(file="images/true.png")
         self.wrong_photo = PhotoImage(file="images/false.png")
 
-        self.button_right = Button(image=self.right_photo, highlightthickness=0)
+        self.button_right = Button(image=self.right_photo, highlightthickness=0, command=self.correct)
         self.button_right.grid(column=0, row=2, padx=20, pady=20)
-        self.button_wrong = Button(image=self.wrong_photo, highlightthickness=0)
+        self.button_wrong = Button(image=self.wrong_photo, highlightthickness=0, command=self.wrong)
         self.button_wrong.grid(column=1, row=2, padx=20, pady=20)
 
         self.score_text = Label(text=f"Score:", bg=THEME_COLOR, font=FONT, fg="white")
@@ -32,3 +32,9 @@ class QuizUI:
     def get_next_q(self):
         q_text = self.quiz.next_question()
         self.canvas.itemconfig(self.q_next, text=q_text)
+
+    def correct(self):
+        self.quiz.check_answer("True")
+
+    def wrong(self):
+        self.quiz.check_answer("False")
