@@ -22,6 +22,9 @@ weather_param = {
 response = requests.get(OWN_ENDPOINT, params=weather_param)
 weather_data = response.json()
 print(weather_data)
-hourly12_weather = weather_data["hourly"][0:13]
+# hourly12_weather = weather_data["hourly"][0:13]
+for i in range(0, 12):
+    hourly12_weather = weather_data["hourly"][i]["weather"][0]["id"]
+    print(hourly12_weather)
 
 
