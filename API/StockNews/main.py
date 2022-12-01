@@ -52,7 +52,9 @@ if difference_in_percentage == 0:
     ## STEP 2: https://newsapi.org/
     response_new = requests.get(url=NEWS_ENDPOINT, params=news_para)
     news = response_new.json()
-    print(news["articles"][0:2])
+    for i in range(0, 3):
+        news_titles = news["articles"][i]["title"]
+        print(news_titles)
 
 #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
 
