@@ -1,5 +1,5 @@
 import requests
-
+from datetime import date, timedelta
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
@@ -10,8 +10,10 @@ stock_para = {
     "symbol": STOCK_NAME,
     "apikey": STOCK_API
 }
-
-
+yesterday = str(date.today() - timedelta(days=1))
+day_before_yesterday = str(date.today() - timedelta(days=2))
+print(yesterday)
+print(day_before_yesterday)
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
     ## STEP 1: Use https://www.alphavantage.co/documentation/#daily
@@ -21,10 +23,12 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 response = requests.get(url=STOCK_ENDPOINT, params=stock_para)
 data = response.json()
 stock_prices = data["Time Series (Daily)"]
-# stock_yesterday = stock_prices[0]
-# print(stock_yesterday)
+stock_yesterday = stock_prices[yesterday]
+stock_yesterday_close = stock_yesterday['4. close']
+print(stock_yesterday_close)
 #TODO 2. - Get the day before yesterday's closing stock price
-
+stock_before_yesterday_close = stock_prices[day_before_yesterday]['4. close']
+print(stock_before_yesterday_close)
 #TODO 3. - Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
 
 #TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
