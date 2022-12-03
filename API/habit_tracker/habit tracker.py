@@ -42,5 +42,5 @@ graph_put_para = {
 update = requests.put(url=PIXELA_GRAPH_PUT, json=graph_put_para, headers=headers)
 print(update.text)
 
-# PIXELA_GRAPH_DEL = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_para['id']}/{today}"
-# delete =
+PIXELA_GRAPH_DEL = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_para['id']}/{today}"
+delete = requests.delete(url=PIXELA_GRAPH_DEL, headers=headers)

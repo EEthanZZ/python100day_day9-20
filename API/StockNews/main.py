@@ -24,7 +24,7 @@ stock_para = {
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 NEWS_API = "1732c7396c084730ae406cdff96427d1"
 news_para = {
-    "q": "tesla",
+    "qInTitle": "tesla",
     "from": f"{yesterday}",
     "apiKey": NEWS_API,
 }
@@ -46,10 +46,10 @@ print(stock_before_yesterday_close)
 difference = abs(stock_yesterday_close - stock_before_yesterday_close)
 print(difference)
 
-difference_in_percentage = difference / stock_before_yesterday_close
+difference_in_percentage = difference / stock_before_yesterday_close * 100
 print(difference_in_percentage)
 
-if difference_in_percentage == 0:
+if difference_in_percentage > 5:
     print("get news")
     response_new = requests.get(url=NEWS_ENDPOINT, params=news_para)
     news = response_new.json()
