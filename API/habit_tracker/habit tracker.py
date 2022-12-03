@@ -24,3 +24,11 @@ headers = {
 
 response = requests.post(url=PIXELA_GRAPH, json=graph_para, headers=headers)
 print(response.text)
+
+PIXELA_GRAPH_POST = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_para['id']}"
+graph_post_para = {
+    "date": "20221203",
+    "quantity": "3"
+}
+response_2 = requests.post(url=PIXELA_GRAPH_POST, json=graph_post_para, headers=headers)
+print(response_2.text)
