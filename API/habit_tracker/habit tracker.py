@@ -34,3 +34,13 @@ graph_post_para = {
 }
 response_2 = requests.post(url=PIXELA_GRAPH_POST, json=graph_post_para, headers=headers)
 print(response_2.text)
+
+PIXELA_GRAPH_PUT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_para['id']}/{today}"
+graph_put_para = {
+    "quantity": "2"
+}
+update = requests.put(url=PIXELA_GRAPH_PUT, json=graph_put_para, headers=headers)
+print(update.text)
+
+# PIXELA_GRAPH_DEL = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_para['id']}/{today}"
+# delete =
