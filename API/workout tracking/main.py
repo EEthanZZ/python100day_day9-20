@@ -31,5 +31,7 @@ sheeety_para = {
 
     }
 }
-sheet_response = requests.post(SHEETY_END, json=sheeety_para)
+
+sheet_auth = {"Authorization": "Bearer aqaqaqaq"}
+sheet_response = requests.post(SHEETY_END, json=sheeety_para, headers=sheet_auth)
 print(sheet_response.text)
