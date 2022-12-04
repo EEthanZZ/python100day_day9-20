@@ -1,6 +1,12 @@
 import requests
 from datetime import datetime
 import os
+
+GENDER = "male"
+WEIGHT_KG = "70"
+HEIGHT_CM = "175"
+AGE = "30"
+
 APP_ID = os.environ["APP_ID"]
 API_KEY = os.environ["API_KEY"]
 END_POINT = os.environ["END_POINT"]
@@ -9,6 +15,10 @@ SHEETY_END = os.environ["SHEETY_END"]
 
 
 para = {"query": f"{input('what have you done?')}",
+        "gender": GENDER,
+        "weight_kg": WEIGHT_KG,
+        "height_cm": HEIGHT_CM,
+        "age": AGE
         }
 headers = {"x-app-id": APP_ID,
            "x-app-key": API_KEY}
