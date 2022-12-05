@@ -1,15 +1,18 @@
 import requests
+from pprint import pprint
+
+SHEETY_ENDPOINT = "https://api.sheety.co/a581b08495e47520093ca6826d9aa89c/flightDealsCopy/prices"
+
 
 class DataManager:
     def __init__(self):
-        self.SHEETY_ENDPOINT = "https://api.sheety.co/a581b08495e47520093ca6826d9aa89c/flightDealsCopy/prices"
-        self.SHEETY_PARA = {
-            "prices": {
-                "city": "city",
-                "IATA Code": "IATA Code",
-                "Lowest Price": "Lowest Price"
-            }
-        }
+        self.des_data = {}
 
-        self.response = requests.post(url=self.SHEETY_ENDPOINT, json=self.SHEETY_PARA)
+    def get_dest(self):
+        response = requests.get(url=SHEETY_ENDPOINT)
+        data = response.json()
+        self.des_data = data["prices"]
+        pprint(self.des_data)
 
+
+DataManager.get_dest(DataManager)
