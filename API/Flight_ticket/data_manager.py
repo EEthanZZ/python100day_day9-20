@@ -12,7 +12,20 @@ class DataManager:
         response = requests.get(url=SHEETY_ENDPOINT)
         data = response.json()
         self.des_data = data["prices"]
-        pprint(self.des_data)
+        # pprint(self.des_data)
+        return self.des_data
+
+    def get_dest_code(self):
+        for city in self.des_data:
+            new_date = {
+                "price": {
+                    "iataCode": city["iataCode"]
+                }
+            }
+            response = requests.put(
+                url=f"{SHEETY_ENDPOINT}/{city['id']}",
+                json=new_date
+            )
+            print(response.text)
 
 
-DataManager.get_dest(DataManager)
