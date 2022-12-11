@@ -99,3 +99,23 @@ width: 5%
   background-image: linear-gradient(to bottom, #30e3cb, #2bc4ad);
   text-decoration: none;
 }
+
+.bottom-container{
+background: #30e3cb;
+margin-top: 20px;
+padding: 20px 0 10px;
+}
+
+.footer-link{
+text-decoration: none;
+margin: 10px 20px;
+}
+
+.footer-link:hover{
+color: white;
+}
+
+.copyright {
+color: white;
+font-size: 0.8rem;
+}
