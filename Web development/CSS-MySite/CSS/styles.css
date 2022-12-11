@@ -19,9 +19,10 @@ font-family: font-family: 'Crimson Text', serif;
 }
 
 h3 {
-color: ##11999E;
+color: #11999E;
 font-family: font-family: 'Crimson Text', serif;
 }
+
 .top{background-color: #B7C4CF;
 padding-top: 50px;
 }
@@ -61,3 +62,6 @@ width: 25%;
 float: right;
 margin-right: 30px;
 }
+
+.cisco_text {
+clear: right;}
