@@ -8,3 +8,7 @@ a = soup.title
 print(a)
 print(a.name)
 print(a.string)
+
+all_anchor_tag = soup.find_all(name="a")
+for tag in all_anchor_tag:
+    print(f"{tag.getText()}: {tag.get('href')}")
