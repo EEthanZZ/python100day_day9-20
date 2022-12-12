@@ -9,11 +9,19 @@ soup = BeautifulSoup(yc_web, "html.parser")
 links = soup.find_all(class_="titleline")
 article_links = [link_tag.find(name="a").get("href") for link_tag in links]
 article_titles = [link_title.getText() for link_title in links]
-print(article_titles)
-print(article_links)
+# print(article_titles)
+# print(article_links)
 artical_upvotes = soup.find_all(name="span", class_="score")
-votes = [i.getText().split()[0] for i in artical_upvotes]
+votes = [int(i.getText().split()[0]) for i in artical_upvotes]
 print(votes)
+largest = max(votes)
+largest_index = votes.index(largest)
+print(article_links[largest_index])
+for i in range(len(votes)):
+    largest = max(votes)
+    largest_index = votes.index(largest)
+    votes.remove(largest)
+    print(article_titles[largest_index])
 
 # with open("website.html", encoding="utf8") as file:
 #     content = file.read()
