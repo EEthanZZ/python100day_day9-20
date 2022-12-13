@@ -13,6 +13,8 @@ for i in movies_name:
     if a in i:
         x = i.replace(a, "")
         movies.append(x)
-
+with open("movies.txt", mode="w") as data:
+    for movie in movies:
+        data.write(f"{movie}\n")
 
 
