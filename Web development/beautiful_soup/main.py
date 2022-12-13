@@ -17,7 +17,7 @@ print(votes)
 largest = max(votes)
 largest_index = votes.index(largest)
 print(article_links[largest_index])
-for i in range(len(votes)):
+for i in votes:
     largest = max(votes)
     largest_index = votes.index(largest)
     votes.remove(largest)
