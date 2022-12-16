@@ -11,3 +11,6 @@ header = {
 response = requests.get(URL, headers=header)
 soup = BeautifulSoup(response.content, "lxml")
 print(soup.prettify())
+
+price = soup.find(class_="a-price-whole", name="span").getText()
+print(price)
