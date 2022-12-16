@@ -10,7 +10,9 @@ header = {
 
 response = requests.get(URL, headers=header)
 soup = BeautifulSoup(response.content, "lxml")
-print(soup.prettify())
+# print(soup.prettify())
 
 price = soup.find(class_="a-price-whole", name="span").getText()
-print(price)
+price_whole = int(price[:-1])
+print(price_whole)
+
