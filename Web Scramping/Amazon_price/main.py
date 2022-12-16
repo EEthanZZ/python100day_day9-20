@@ -31,8 +31,12 @@ if price_whole < BUY_PRICE:
     with smtplib.SMTP(host='smtp.gmail.com', port=587) as connection:
         connection.starttls()
         connection.login(user=EMAIL_SEND, password=EMAIL_PASS)
-        connection.sendmail(
-            from_addr=EMAIL_SEND,
-            to_addrs="yczhu@yahoo.com",
-            msg=message
-        )
+        try:
+            connection.sendmail(
+                from_addr=EMAIL_SEND,
+                to_addrs="yczhu@yahoo.com",
+                msg=message
+            )
+            print("Email sent")
+        except smtplib.SMTPException:
+            print("Error: unable to send email")
