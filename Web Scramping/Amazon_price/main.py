@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import lxml
 import smtplib
-
+import os
 URL = "https://www.amazon.com/dp/B0053WRWX8/ref=sbl_dpx_kitchen-electric-cookware_B09F6XHB4C_0?th=1"
 header = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36",
@@ -10,7 +10,8 @@ header = {
 }
 BUY_PRICE = 250
 
-
+EMAIL_SEND = os.environ.get("EMAIL_FROM")
+EMAIL_PASS = os.environ.get("EMAIL_FROM_PASSWORD")
 
 response = requests.get(URL, headers=header)
 soup = BeautifulSoup(response.content, "lxml")
@@ -27,11 +28,11 @@ print(product_buy)
 if price_whole < BUY_PRICE:
     message = f"the {product_buy} is ${price_whole} now"
 
-    with smtplib.SMTP("smtp.mail.yahoo.com", port=587) as connection:
+    with smtplib.SMTP(host='smtp.gmail.com', port=587) as connection:
         connection.starttls()
-        result = connection.login("yczhu@yahoo.com", "email_password")
+        connection.login(user=EMAIL_SEND, password=EMAIL_PASS)
         connection.sendmail(
-            from_addr="sendemail",
-            to_addrs="gmail",
+            from_addr=EMAIL_SEND,
+            to_addrs="yczhu@yahoo.com",
             msg=message
         )
