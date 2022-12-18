@@ -14,3 +14,11 @@ date = browser.find_elements(By.CSS_SELECTOR, ".event-widget time")
 
 event = browser.find_elements(By.CSS_SELECTOR, ".event-widget li a")
 
+dic = {}
+for n in range(len(event)):
+    dic[n] = {
+        "time:": date[n].text,
+        "name:": event[n].text,
+    }
+
+print(dic)
