@@ -15,7 +15,8 @@ browser.get(url)
 button = browser.find_element(By.ID, "cookie")
 
 timeout = time.time() + 10
-five_min = time.time() + 300
+five_min = time.time() + 30
+
 while True:
     button.click()
 
@@ -35,5 +36,8 @@ while True:
                     except selenium.common.exceptions.NoSuchElementException:
                         continue
 
-
         timeout = time.time() + 10
+
+    if time.time() > five_min:
+        save = browser.find_element(By.ID, "exportSave")
+        save.click()
