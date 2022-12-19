@@ -20,7 +20,7 @@ while True:
     button.click()
 
     if time.time() > timeout:
-        money = int(browser.find_element(By.ID, "money").text)
+        money = int(browser.find_element(By.ID, "money").text.replace(",", ""))
 
         store = browser.find_elements(By.CSS_SELECTOR, "#store b")
         for upgrade in store[::-1]:
