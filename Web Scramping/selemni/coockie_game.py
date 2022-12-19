@@ -1,3 +1,4 @@
+import selenium.common.exceptions
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -29,9 +30,10 @@ while True:
                 product = upgrades[0].strip()
                 price = int(upgrades[1].strip().replace(",", ""))
                 if money > price:
-                    browser.find_element(By.ID, f"Buy{product}").click()
-                    break
-                else:
-                    continue
+                    try:
+                        browser.find_element(By.ID, f"Buy{product}").click()
+                    except selenium.common.exceptions.NoSuchElementException:
+                        continue
+
 
         timeout = time.time() + 10
