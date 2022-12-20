@@ -25,3 +25,8 @@ user.send_keys(USERNAME)
 password = browser.find_element(By.ID, "password")
 password.send_keys(PASSWORD)
 password.send_keys(Keys.ENTER)
+
+browser.find_element(By.CSS_SELECTOR, ".jobs-apply-button--top-card").click()
+time.sleep(3)
+browser.find_element(By.XPATH, '//*[@id="single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-3162045938-4856673786530167398-phoneNumber-nationalNumber"]').send_keys("404346835")
+
