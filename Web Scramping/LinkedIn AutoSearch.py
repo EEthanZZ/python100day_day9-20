@@ -2,6 +2,7 @@ import os
 import time
 import selenium.common.exceptions
 from selenium import webdriver
+from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
@@ -18,3 +19,9 @@ browser.get(url)
 time.sleep(2)
 sign_in = browser.find_element(By.LINK_TEXT, "Sign in")
 sign_in.click()
+
+user = browser.find_element(By.ID, "username")
+user.send_keys(USERNAME)
+password = browser.find_element(By.ID, "password")
+password.send_keys(PASSWORD)
+password.send_keys(Keys.ENTER)
