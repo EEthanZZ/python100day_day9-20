@@ -19,6 +19,8 @@ browser.get(url)
 
 browser.maximize_window()
 time.sleep(1)
+browser.find_element(By.XPATH, '//*[@id="q888578821"]/div/div[2]/div/div/div[1]/div[1]/button/div[2]').click()
+
 browser.find_element(By.LINK_TEXT, "Log in").click()
 time.sleep(1)
 
@@ -32,7 +34,7 @@ browser.switch_to.window(login_page)
 browser.find_element(By.XPATH, '//*[@id="email"]').send_keys(USERNAME)
 browser.find_element(By.XPATH, '//*[@id="pass"]').send_keys(PASSWORD)
 browser.find_element(By.XPATH, '//*[@id="pass"]').send_keys(Keys.ENTER)
-time.sleep(5)
+time.sleep(3)
 # browser.maximize_window()
 # time.sleep(2)
 # browser.find_element(By.XPATH, '//*[@id="mount_0_0_5F"]/div/div/div/div/div/div/div/div[1]/div[2]/div[2]/div[1]/div/div/div').click()
