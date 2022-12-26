@@ -16,7 +16,7 @@ service = Service(chrome)
 browser = webdriver.Chrome(service=service, options=op)
 browser.get(url)
 
-time.sleep(2)
+time.sleep(1)
 sign_in = browser.find_element(By.LINK_TEXT, "Sign in")
 sign_in.click()
 
@@ -26,7 +26,12 @@ password = browser.find_element(By.ID, "password")
 password.send_keys(PASSWORD)
 password.send_keys(Keys.ENTER)
 
-browser.find_element(By.CSS_SELECTOR, ".jobs-apply-button--top-card").click()
-time.sleep(3)
+browser.find_element(By.CLASS_NAME, "jobs-apply-button--top-card").click()
+time.sleep(1)
 browser.find_element(By.XPATH, '//*[@id="single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-3162045938-4856673786530167398-phoneNumber-nationalNumber"]').send_keys("404346835")
 
+browser.find_element(By.CSS_SELECTOR, "span .artdeco-button__text").click()
+time.sleep(1)
+browser.find_element(By.ID, "ember417").click()
+time.sleep(1)
+browser.find_element(By.LINK_TEXT, "Choose").click()
