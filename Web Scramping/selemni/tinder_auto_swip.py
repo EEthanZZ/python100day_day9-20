@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 url = "https://tinder.com/"
 
@@ -42,6 +43,12 @@ time.sleep(3)
 # browser.find_element(By.XPATH, '//*[@id="q-839802255"]/main/div/div[1]/div/div[2]/div/input').send_keys("404346835")
 
 browser.switch_to.window(main_window)
-browser.find_element(By.XPATH, '//*[@id="q-839802255"]/main/div/div/div/div[3]/button[1]').click()
+time.sleep(2)
+browser.find_element(By.XPATH, '//*[@id="q-839802255"]/main/div/div/div/div[3]/button[1]/div[2]').click()
 time.sleep(1)
-browser.find_element(By.XPATH, '//*[@id="q-839802255"]/main/div/div/div/div[3]/button[1]').click()
+browser.find_element(By.XPATH, '//*[@id="q-839802255"]/main/div/div/div/div[3]/button[2]/div[2]').click()
+time.sleep(8)
+action = ActionChains(browser)
+for i in range(0,100):
+    action.send_keys(Keys.ARROW_RIGHT)
+    action.perform()
