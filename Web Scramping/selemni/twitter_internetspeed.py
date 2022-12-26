@@ -11,10 +11,11 @@ url = "https://tinder.com/"
 
 USERNAME = os.environ.get("USERNAME")
 PASSWORD = os.environ.get("PASSWORD")
-op = webdriver.ChromeOptions()
-op.add_experimental_option("detach", True)
 chrome = "C:/chromedriver_win32/chromedriver"
 service = Service(chrome)
+op = webdriver.ChromeOptions()
+op.add_experimental_option("detach", True)
+op.add_argument("start-maximized")
 
 
 class speed_twitter_bot:
@@ -24,8 +25,18 @@ class speed_twitter_bot:
         self.down = 0
 
     def get_speed(self):
-        pass
-
+        self.browser.get(url="https://www.speedtest.net/")
+        time.sleep(3)
+        self.browser.find_element(By.XPATH, '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[1]/a/span[4]').click()
+        time.sleep(40)
+        self.up = self.browser.find_element(By.XPATH, '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[1]/div/div[2]/span')
+        self.down = self.browser.find_element(By.XPATH, '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[2]/div/div[2]/span')
+        print(self.up.text)
+        print(self.down.text)
     def tweet(self):
         pass
 
+
+bot = speed_twitter_bot()
+bot.get_speed()
+bot.tweet()
