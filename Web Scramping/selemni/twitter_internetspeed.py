@@ -34,9 +34,18 @@ class speed_twitter_bot:
         print(self.up.text)
         print(self.down.text)
     def tweet(self):
-        pass
+        self.browser.get(url="https://twitter.com/i/flow/login")
+        time.sleep(2)
+        username = self.browser.find_element(By.NAME, "text")
+        username.send_keys(USERNAME)
+        username.send_keys(Keys.ENTER)
+        time.sleep(1)
+        password = self.browser.find_element(By.NAME, "password")
+        password.send_keys(PASSWORD)
+        password.send_keys(Keys.ENTER)
 
+        write = self.browser.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div[1]/div/div/div/div/div/div[2]/div/div/div/div/label/div[1]/div/div/div/div/div/div[2]/div/div/div/div')
 
 bot = speed_twitter_bot()
-bot.get_speed()
+# bot.get_speed()
 bot.tweet()
