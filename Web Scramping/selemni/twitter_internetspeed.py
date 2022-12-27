@@ -43,9 +43,13 @@ class speed_twitter_bot:
         password = self.browser.find_element(By.NAME, "password")
         password.send_keys(PASSWORD)
         password.send_keys(Keys.ENTER)
+        time.sleep(5)
+        content = f"my upload speed is {self.up}, downlaod speed is {self.down}"
+        write = self.browser.find_element(By.XPATH, "//div[contains(@aria-label, 'Tweet text')]")
+        write.click()
+        write.send_keys(content)
 
-        write = self.browser.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div[1]/div/div/div/div/div/div[2]/div/div/div/div/label/div[1]/div/div/div/div/div/div[2]/div/div/div/div')
-
+        self.browser.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div[3]/div/div/div[2]/div[3]/div').click()
 bot = speed_twitter_bot()
-# bot.get_speed()
+bot.get_speed()
 bot.tweet()
