@@ -43,7 +43,8 @@ class iG_follower:
 
     def find_followers(self):
         self.browser.get(url=f"{url}/{ACCOUNT}")
-
+        time.sleep(4)
+        self.browser.find_element(By.XPATH, '/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/section/main/div/header/section/ul/li[2]/a').click()
     def follow(self):
         pass
 
