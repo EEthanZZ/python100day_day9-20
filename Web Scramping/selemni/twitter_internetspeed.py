@@ -27,12 +27,16 @@ class speed_twitter_bot:
     def get_speed(self):
         self.browser.get(url="https://www.speedtest.net/")
         time.sleep(3)
-        self.browser.find_element(By.XPATH, '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[1]/a/span[4]').click()
+        self.browser.find_element(By.XPATH,
+                                  '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[1]/a/span[4]').click()
         time.sleep(40)
-        self.up = self.browser.find_element(By.XPATH, '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[1]/div/div[2]/span')
-        self.down = self.browser.find_element(By.XPATH, '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[2]/div/div[2]/span')
+        self.up = self.browser.find_element(By.XPATH,
+                                            '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[1]/div/div[2]/span')
+        self.down = self.browser.find_element(By.XPATH,
+                                              '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[2]/div/div[2]/span')
         print(self.up.text)
         print(self.down.text)
+
     def tweet(self):
         self.browser.get(url="https://twitter.com/i/flow/login")
         time.sleep(2)
@@ -49,7 +53,10 @@ class speed_twitter_bot:
         write.click()
         write.send_keys(content)
 
-        self.browser.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div[3]/div/div/div[2]/div[3]/div').click()
+        self.browser.find_element(By.XPATH,
+                                  '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div[3]/div/div/div[2]/div[3]/div').click()
+
+
 bot = speed_twitter_bot()
 bot.get_speed()
 bot.tweet()
