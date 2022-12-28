@@ -16,11 +16,39 @@ op = webdriver.ChromeOptions()
 op.add_experimental_option("detach", True)
 chrome = "C:/chromedriver_win32/chromedriver"
 service = Service(chrome)
-browser = webdriver.Chrome(service=service, options=op)
-browser.get(url)
-time.sleep(2)
-browser.find_element(By.NAME, 'username').send_keys(USERNAME)
-browser.find_element(By.NAME, 'password').send_keys(PASSWORD)
-browser.find_element(By.NAME, 'password').send_keys(Keys.ENTER)
-time.sleep(5)
-browser.find_element(By.XPATH, '//*[@id="mount_0_0_0+"]/div/div/div/div[1]/div/div/div/div[1]/section/main/div/div/div/div/button').click()
+op.add_argument("start-maximized")
+
+
+class iG_follower:
+    def __init__(self):
+        self.browser = webdriver.Chrome(service=service, options=op)
+
+    def login(self):
+        self.browser.get(url)
+        time.sleep(2)
+        self.browser.find_element(By.NAME, 'username').send_keys(USERNAME)
+        self.browser.find_element(By.NAME, 'password').send_keys(PASSWORD)
+        self.browser.find_element(By.NAME, 'password').send_keys(Keys.ENTER)
+        time.sleep(4)
+        try:
+            self.browser.find_element(By.XPATH,
+                                      '/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/section/main/div/div/div/div/button').click()
+            time.sleep(2)
+            self.browser.find_element(By.XPATH,
+                                      '/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[1]').click()
+        except:
+            self.browser.find_element(By.XPATH,
+                                      '/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[1]').click()
+        time.sleep(2)
+
+    def find_followers(self):
+        self.browser.get(url=f"{url}/{ACCOUNT}")
+
+    def follow(self):
+        pass
+
+
+bot = iG_follower()
+bot.login()
+
+bot.find_followers()
