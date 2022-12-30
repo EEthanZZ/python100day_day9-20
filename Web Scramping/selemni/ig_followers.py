@@ -5,8 +5,7 @@ from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-
+from selenium.common.exceptions import ElementClickInterceptedException
 url = "https://www.instagram.com/"
 
 ACCOUNT = "natgeo"
@@ -52,11 +51,24 @@ class iG_follower:
         # scroll down to load more and more followers
         for i in range(100):
             self.browser.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", pop_up_window)
-            time.sleep(2)
+        time.sleep(2)
+
     def follow(self):
-        pass
+        followers_list = self.browser.find_elements(By.CSS_SELECTOR, '.PZuss li button')
+        # loop through each follower in follower list
+        for follower in followers_list:
+            try:
+                follower.click()
+                time.sleep(1)
+            # if sometimes we click on following instead of follow, so instagram displays pop up to confirm unfollow
+            except ElementClickInterceptedException:
+                # click on cancel
+                self.browser.find_element(By.XPATH, '/html/body/div[7]/div/div/div/div[3]/button[2]').click()
+                time.sleep(2)
+
 
 
 bot = iG_follower()
 bot.login()
 bot.find_followers()
+bot.follow()
