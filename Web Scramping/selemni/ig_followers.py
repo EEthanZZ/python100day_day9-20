@@ -44,13 +44,14 @@ class iG_follower:
     def find_followers(self):
         self.browser.get(url=f"{url}/{ACCOUNT}")
         time.sleep(4)
-        self.browser.find_element(By.XPATH, '/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/section/main/div/header/section/ul/li[2]/a').click()
+        self.browser.find_element(By.XPATH, '/html/body/div[2]/div/div/div/div[1]/div/div/div/div['
+                                            '1]/section/main/div/header/section/ul/li[2]/a').click()
         time.sleep(5)
         # select the scrollable part of the popup window
-        pop_up_window = self.browser.find_element(By.CLASS_NAME, 'isgrP')
+        pop_up_window = self.browser.find_element(By.CSS_SELECTOR, '._ab8w ._aano')
         # scroll down to load more and more followers
-        for i in range(5):
-            self.browser.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight', pop_up_window)
+        for i in range(100):
+            self.browser.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", pop_up_window)
             time.sleep(2)
     def follow(self):
         pass
