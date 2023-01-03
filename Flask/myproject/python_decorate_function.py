@@ -9,8 +9,8 @@ def speed_calc_decorator(function):
         start_time = time.time()
         function()
         end_time = time.time()
-        print(f"{function.__name__}: {end_time - start_time}")
-    return wrapped_function()
+        print(f"{function.__name__}: {end_time - start_time}s")
+    return wrapped_function
 
 
 @speed_calc_decorator
