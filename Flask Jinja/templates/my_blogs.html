@@ -6,7 +6,11 @@
 </head>
 <body>
     {% for blog in blogs: %}
-        <h1>{{blog["id"]}}</h1>
+        <h1>{% if blog["id"] == 2: %}</h1>
+                {{ blog["id"] }}
+            {% endif %}
     {% endfor %}
+
+
 </body>
 </html>
